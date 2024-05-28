@@ -1,0 +1,83 @@
+body{
+    background-color: rgb(73, 69, 69);
+}
+
+/* .main{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+} */
+
+.post{
+    margin: 60px 0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.post h2{
+    padding: 10px; 
+    /* border-radius: 5px; */
+}
+
+
+.post article{
+    width: 40%;
+    border: 2px solid white;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+.post article h2{
+    color: rgb(237, 240, 90);
+}
+
+.btns{
+    
+    display: flex;
+    gap: 5px;
+}
+
+.btns button{
+    background-color: rgb(73, 69, 69);
+    color: white;
+    border: none;
+
+}
+
+.addpost{
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    /* height: 100vh; */
+}
+
+
+.addpost form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 30%;
+}
+
+
+.addpost form input,
+.addpost form select{
+    height: 20px;
+    border-radius: 5px;
+    border: none;
+}
+
+
+.addpost form textarea{
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+}
