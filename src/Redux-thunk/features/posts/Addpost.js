@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postsAdding } from "./PostSlice";
+import { addNewPost } from "./PostSlice";
 import { selectAllUsers } from "../users/UserSlice";
+import { useNavigate } from "react-router-dom";
 
 const Addpost = () => {
   const users = useSelector(selectAllUsers);
@@ -9,15 +10,28 @@ const Addpost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [userId, setUserId] = useState("");
+  const [addRequestStatus, setAddRequestStatus] = useState("idle");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const canSave =
+    [title, content, userId].every(Boolean) && addRequestStatus === "idle";
 
   const onSaveClicked = () => {
-    if (title && content && userId) {
-      dispatch(postsAdding(title, content, userId));
+    if (canSave) {
+      try {
+        setAddRequestStatus("pending");
+        dispatch(addNewPost({ title, body: content, userId })).unwrap();
+        setTitle("");
+        setContent("");
+        setUserId("");
+        navigate("/");
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setAddRequestStatus("idle");
+      }
     }
-    setTitle("");
-    setContent("");
-    setUserId("");
   };
 
   const userOptions = users.map((user) => {
@@ -27,8 +41,6 @@ const Addpost = () => {
       </option>
     );
   });
-
-  const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
 
   return (
     <section className="addpost">
@@ -44,15 +56,15 @@ const Addpost = () => {
         <select
           id="author"
           value={userId}
-          onChange={(e) => setUserId(e.target.value)}
+          onChange={(e) => setUserId(Number(e.target.value))}
         >
           <option></option>
           {userOptions}
         </select>
 
         <label htmlFor="content">Add Content:</label>
-        <input
-          id="Content"
+        <textarea
+          id="content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />

@@ -2,6 +2,36 @@ body{
     background-color: rgb(73, 69, 69);
 }
 
+header{
+    background-color: white;
+    color: rgb(237, 240, 90);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header nav {
+    width: 40%;
+}
+
+header nav ul{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+header nav ul a{
+    color: rgb(73, 69, 69);
+    text-decoration: none;
+    /* font-weight: bold; */
+    font-size: 20px;
+}
+
+a{
+    color: white;
+}
+
 /* .main{
     display: flex;
     justify-content: space-around;
